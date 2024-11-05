@@ -1,0 +1,21 @@
+<p>table-dialog-demo works!</p>
+<div>
+    <button (click)="openDialog()">Add Row</button>
+  
+    <!-- Reusable Table Component -->
+    <app-table
+      [data]="tableData"
+      [columns]="fieldsConfig"
+      (edit)="editRow($event)"
+      (delete)="deleteRow($event)">
+    </app-table>
+  
+    <!-- Dialog Component for Adding/Editing Rows -->
+    <app-add-edit-data-dialog
+      *ngIf="dialogOpen"
+      [fieldsConfig]="fieldsConfig"
+      [data]="editingRowData"
+      (addRow)="handleAddOrEditRow($event)"
+      (close)="closeDialog()">
+    </app-add-edit-data-dialog>
+  </div>

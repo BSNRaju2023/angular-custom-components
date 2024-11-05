@@ -1,0 +1,18 @@
+<p>table works!</p>
+<table>
+    <thead>
+      <tr>
+        <th *ngFor="let column of columns">{{ column.label }}</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of data; let i = index">
+        <td *ngFor="let column of columns">{{ row[column.fieldName] }}</td>
+        <td>
+          <button (click)="onEdit(i)">Edit</button>
+          <button (click)="onDelete(i)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>

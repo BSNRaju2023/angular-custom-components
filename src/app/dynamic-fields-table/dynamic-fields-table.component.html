@@ -1,0 +1,46 @@
+<table>
+    <thead>
+      <tr>
+        <th *ngFor="let field of fieldConfig">{{ field.label }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of rows; let i = index">
+        <td *ngFor="let field of fieldConfig">
+          <ng-container [ngSwitch]="field.type">
+            <input
+              *ngSwitchCase="'text'"
+              type="text"
+              [value]="row[field.label]"
+              (input)="onInputChange(field.label, $event, i)"
+              [placeholder]="field.label"
+            />
+            <select
+              *ngSwitchCase="'select'"
+              [value]="row[field.label]"
+              (change)="onInputChange(field.label, $event, i)"
+            >
+              <option [value]="''" disabled>Select an option</option>
+              <option *ngFor="let option of field.options" [value]="option">{{ option }}</option>
+            </select>
+            <input
+              *ngSwitchCase="'checkbox'"
+              type="checkbox"
+              [checked]="row[field.label]"
+              (change)="onInputChange(field.label, $event, i)"
+            />
+            <input
+              *ngSwitchCase="'number'"
+              type="number"
+              [value]="row[field.label]"
+              (input)="onInputChange(field.label, $event, i)"
+              [placeholder]="field.label"
+              [attr.min]="field.min || null"
+            />
+          </ng-container>
+          <div *ngIf="errors[i]?.[field.label]" class="error">{{ errors[i][field.label] }}</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button (click)="addRow()">Add Row</button>

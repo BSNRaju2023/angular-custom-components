@@ -1,0 +1,31 @@
+<div class="dialog">
+    <h2>{{ data ? 'Edit Row' : 'Add New Row' }}</h2>
+    <form (submit)="onSubmit()">
+      <ng-container *ngFor="let field of fieldsConfig">
+        <label [attr.for]="field.fieldName">{{ field.label }}</label>
+
+        <input
+          *ngIf="field.type === 'text' || field.type === 'number' || field.type === 'date'"
+          [attr.type]="field.type"
+          [attr.id]="field.fieldName"
+          [attr.placeholder]="'Enter ' + field.label"
+          [value]="formData[field.fieldName] || ''"
+          (change)="updateFieldValue(field.fieldName, $event)"
+        />
+
+        <select
+          *ngIf="field.type === 'select'"
+          [attr.id]="field.fieldName"
+          [value]="formData[field.fieldName] || ''"
+          (change)="updateFieldValue(field.fieldName, $event)"
+        >
+          <option *ngFor="let option of field.options" [value]="option.value">
+            {{ option.label }}
+          </option>
+        </select>
+      </ng-container>
+
+      <button type="submit">{{ data ? 'Save' : 'Add' }}</button>
+      <button type="button" (click)="closeDialog()">Cancel</button>
+    </form>
+  </div>

@@ -1,0 +1,6 @@
+<app-dynamic-fields-table
+[fieldConfig]="fieldConfig"
+(formDataChange)="onFormDataChange($event)"
+(formValidityChange)="onFormValidityChange($event)"
+></app-dynamic-fields-table>
+<button (click)="submit()" [disabled]="!isFormValid">Submit</button>
