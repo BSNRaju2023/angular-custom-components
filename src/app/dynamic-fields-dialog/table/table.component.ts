@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ColumnConfig } from './ColumnConfig';
+import { ColumnsConfig } from './ColumnsConfig';
 
 @Component({
   selector: 'app-table',
@@ -9,7 +9,7 @@ import { ColumnConfig } from './ColumnConfig';
 
 export class TableComponent {
   @Input() data: any[] = [];
-  @Input() columns: ColumnConfig[] = [];
+  @Input() columns: ColumnsConfig[] = [];
 
   @Output() edit = new EventEmitter<number>();
   @Output() delete = new EventEmitter<number>();

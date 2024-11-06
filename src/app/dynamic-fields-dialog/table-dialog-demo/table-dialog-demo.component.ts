@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { ColumnConfig } from '../add-edit-data-dialog/ColumnConfig';
+import { FieldsConfig } from '../add-edit-data-dialog/FieldsConfig';
+import { ColumnsConfig } from '../table/ColumnsConfig';
 
 @Component({
   selector: 'app-table-dialog-demo',
@@ -11,7 +12,7 @@ export class TableDialogDemoComponent {
   editingIndex: number | null = null;
   editingRowData: any = null;
 
-  fieldsConfig: ColumnConfig[] = [
+  fieldsConfig: FieldsConfig[] = [
     { label: 'Name', fieldName: 'name', type: 'text' },
     { label: 'Age', fieldName: 'age', type: 'number' },
     {
@@ -19,6 +20,7 @@ export class TableDialogDemoComponent {
       fieldName: 'gender',
       type: 'select',
       options: [
+        { label: '--', value: '' },
         { label: 'Male', value: 'male' },
         { label: 'Female', value: 'female' },
         { label: 'Other', value: 'other' },
@@ -26,7 +28,15 @@ export class TableDialogDemoComponent {
     },
     { label: 'Joining Date', fieldName: 'joiningDate', type: 'date' },
   ];
-
+  columnsConfig: ColumnsConfig[] = [
+    { label: 'Name', fieldName: 'name' },
+    { label: 'Age', fieldName: 'age' },
+    {
+      label: 'Gender',
+      fieldName: 'gender'
+    },
+    { label: 'Joining Date', fieldName: 'joiningDate' },
+  ];
   tableData: any[] = [];
 
   openDialog() {

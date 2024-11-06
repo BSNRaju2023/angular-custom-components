@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ColumnConfig } from './ColumnConfig';
+import { FieldsConfig } from './FieldsConfig';
 
 
 @Component({
@@ -8,7 +8,7 @@ import { ColumnConfig } from './ColumnConfig';
   styleUrl: './add-edit-data-dialog.component.scss'
 })
 export class AddEditDataDialogComponent {
-  @Input() fieldsConfig: ColumnConfig[] = [];
+  @Input() fieldsConfig: FieldsConfig[] = [];
   @Input() data: any = null;
   @Output() addRow = new EventEmitter<any>();
   @Output() close = new EventEmitter<void>();
